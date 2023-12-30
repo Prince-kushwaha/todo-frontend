@@ -2,7 +2,7 @@ import { updateTodo } from "@/redux/todosAction";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-export function TodoUpdate({ todo, changeEditableStatus }) {
+export function UpdateTodo({ todo, changeEditableStatus }) {
   let [task, SetTask] = useState(todo.task);
   let dispatch = useDispatch();
 
@@ -13,7 +13,7 @@ export function TodoUpdate({ todo, changeEditableStatus }) {
   }
 
   return (
-    <div className="d-flex mt-1">
+    <div className="d-flex mt-2">
       <div className="description flex-grow-1">
         <input
           className="form-control"

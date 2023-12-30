@@ -2,9 +2,9 @@
 import { deleteTodo } from "@/redux/todosAction";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { TodoUpdate } from "./TodoUpdate";
+import { UpdateTodo } from "./UpdateTodo";
 
-export function TaskItem({ todo }) {
+export function TodoItem({ todo }) {
   let dispatch = useDispatch();
   let [isEditable, setIsEditable] = useState(false);
 
@@ -18,7 +18,7 @@ export function TaskItem({ todo }) {
 
   if (isEditable) {
     return (
-      <TodoUpdate
+      <UpdateTodo
         key={todo.id}
         changeEditableStatus={changeEditableStatus}
         todo={todo}
@@ -26,7 +26,7 @@ export function TaskItem({ todo }) {
     );
   } else {
     return (
-      <div className="d-flex mt-1">
+      <div className="d-flex mt-2">
         <div className="description flex-grow-1">
           <p className="form-control">{todo.task}</p>
         </div>

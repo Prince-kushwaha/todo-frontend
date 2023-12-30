@@ -5,7 +5,7 @@ const { configureStore } = require("@reduxjs/toolkit");
 
 const store = configureStore({
   reducer: {
-    todos: todoReducer,
+    todoReducer: todoReducer,
   },
 });
 

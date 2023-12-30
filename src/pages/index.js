@@ -1,7 +1,6 @@
-import Head from "next/head";
 import styles from "@/styles/Home.module.css";
 import { TodoList } from "@/components/TodoList";
-import { AddTask } from "@/components/AddTask";
+import AddTodo from "@/components/AddTodo";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { searchTodo } from "@/redux/todosAction";
@@ -27,7 +26,7 @@ export default function Home() {
             <h6 className="text-center">Add Task</h6>
           </div>
           <div className="card-body">
-            <AddTask />
+            <AddTodo />
           </div>
         </div>
         <div className="card mt-3">
@@ -36,7 +35,7 @@ export default function Home() {
             <div className="search-box">
               <form className="d-flex" onSubmit={onSubmit} role="search">
                 <input
-                  class="form-control me-2"
+                  className="form-control me-2"
                   type="search"
                   placeholder="Search Todos"
                   onChange={handleInputChange}

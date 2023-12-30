@@ -19,38 +19,9 @@ const Slice = createSlice({
   initialState,
   extraReducers: (builder) => {
     builder
-      .addCase(
-        addNewTodo.pending ||
-          updateTodo.pending ||
-          deleteTodo.pending ||
-          getAllTodo.pending,
-        (state) => {
-          state.loading = true;
-        }
-      )
-      .addCase(
-        addNewTodo.rejected ||
-          updateTodo.rejected ||
-          deleteTodo.rejected ||
-          getAllTodo.rejected,
-        (state, action) => {
-          state.loading = false;
-          state.error = action.error.message;
-        }
-      )
       .addCase(addNewTodo.fulfilled, (state, action) => {
         state.loading = false;
         state.todos.push(action.payload);
-        state.error = null;
-      })
-      .addCase(getAllTodo.fulfilled, (state, action) => {
-        state.loading = false;
-        state.todos = action.payload;
-        state.error = null;
-      })
-      .addCase(updateTodo.fulfilled, (state, action) => {
-        state.loading = false;
-        state.todos = action.payload;
         state.error = null;
       })
       .addCase(deleteTodo.fulfilled, (state, action) => {
@@ -60,12 +31,35 @@ const Slice = createSlice({
         );
         state.error = null;
       })
-      .addCase(searchTodo.fulfilled, (state, action) => {
-        state.loading = false;
-        state.todos = action.payload;
-        state.error = null;
-      });
+      .addCase(getAllTodo.fulfilled, fulfilled)
+      .addCase(updateTodo.fulfilled, fulfilled)
+      .addCase(searchTodo.fulfilled, fulfilled)
+      .addCase(addNewTodo.pending, pending)
+      .addCase(updateTodo.pending, pending)
+      .addCase(deleteTodo.pending, pending)
+      .addCase(searchTodo.pending, pending)
+      .addCase(getAllTodo.pending, pending)
+      .addCase(addNewTodo.rejected, rejected)
+      .addCase(deleteTodo.rejected, rejected)
+      .addCase(updateTodo.rejected, rejected)
+      .addCase(searchTodo.rejected, rejected)
+      .addCase(getAllTodo.rejected, rejected);
   },
 });
+
+function pending(state) {
+  state.loading = true;
+}
+
+function rejected(state, action) {
+  state.loading = false;
+  state.error = action.error.message;
+}
+
+function fulfilled(state, action) {
+  state.loading = false;
+  state.todos = action.payload;
+  state.error = null;
+}
 
 export default Slice.reducer;
