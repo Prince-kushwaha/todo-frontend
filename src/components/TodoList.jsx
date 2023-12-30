@@ -1,10 +1,10 @@
 "use client";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { TodoItem } from "./TodoItem";
 import { getAllTodo } from "@/redux/todosAction";
 
-export function TodoList() {
+function TodoList() {
   let { todos } = useSelector((state) => state.todoReducer);
   let dispatch = useDispatch();
 
@@ -18,3 +18,5 @@ export function TodoList() {
 
   return <div className="box mt-3">{todos.map(maper)}</div>;
 }
+
+export default React.memo(TodoList);

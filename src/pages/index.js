@@ -1,5 +1,5 @@
 import styles from "@/styles/Home.module.css";
-import { TodoList } from "@/components/TodoList";
+import TodoList from "@/components/TodoList";
 import AddTodo from "@/components/AddTodo";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
